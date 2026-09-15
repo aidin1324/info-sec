@@ -1,0 +1,25 @@
+$ mkdir my_dir
+$ cd my_dir
+$ touch my_file.txt
+$ chmod 777 my_file.txt
+$ ls -l my_file.txt
+-rwxrwxrwx@ 1 aidin  staff  0 Sep 28 16:05 my_file.txt
+$ cat my_file.txt
+$ cd ..
+$ mkdir another_dir
+$ cp my_dir/my_file.txt another_dir/
+$ rm my_dir/my_file.txt
+$ ls another_dir
+my_file.txt
+$ mkdir source destination
+$ bash -c printf\ \"first\ file\\n\"\ \>\ source/notes.txt\;\ printf\ \"second\ file\\n\"\ \>\ source/second.txt\;\ printf\ \"hidden\ file\\n\"\ \>\ source/.hidden.txt
+$ ls -A source
+.hidden.txt
+notes.txt
+second.txt
+$ mv source/.hidden.txt source/notes.txt source/second.txt destination/
+$ ls -A source
+$ ls -A destination
+.hidden.txt
+notes.txt
+second.txt
