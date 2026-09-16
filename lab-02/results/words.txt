@@ -1,0 +1,10 @@
+$ cat '/Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/samples/words with spaces.txt'
+apple apple pineapple Apple
+apple, apple!
+$ count_word.sh '/Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/samples/words with spaces.txt' apple
+The word 'apple' appears 4 time(s) in '/Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/samples/words with spaces.txt'.
+$ count_word.sh '/Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/samples/words with spaces.txt' pear
+The word 'pear' appears 0 time(s) in '/Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/samples/words with spaces.txt'.
+$ count_word.sh
+Usage: /Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/scripts/count_word.sh <file> <word>
+Exit status: 1

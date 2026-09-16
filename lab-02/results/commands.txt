@@ -1,0 +1,26 @@
+$ pwd
+/private/var/folders/l2/pqkn11d90sb0wt83t043wsl40000gn/T/info-sec-lab2-qt3gcstr
+$ /bin/bash -c 'command -v system_info'
+/Users/aidin/Documents/Codex/2026-09-28/database-github/work/info-sec/lab-02/scripts/system_info
+$ system_info
+Hostname: Aidins-MacBook-Air.local
+Current User: aidin
+Disk Space:
+Filesystem            Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s1s1       460Gi    17Gi   169Gi    10%    427k  1.8G    0%   /
+devfs                202Ki   202Ki     0Bi   100%     698     0  100%   /dev
+/dev/disk3s6         460Gi   6.0Gi   169Gi     4%       6  1.8G    0%   /System/Volumes/VM
+/dev/disk3s2         460Gi    15Gi   169Gi     9%    2.0k  1.8G    0%   /System/Volumes/Preboot
+/dev/disk3s4         460Gi   761Mi   169Gi     1%     336  1.8G    0%   /System/Volumes/Update
+/dev/disk1s2         500Mi   6.0Mi   481Mi     2%       1  4.9M    0%   /System/Volumes/xarts
+/dev/disk1s1         500Mi   6.0Mi   481Mi     2%      35  4.9M    0%   /System/Volumes/iSCPreboot
+/dev/disk1s3         500Mi   2.0Mi   481Mi     1%      94  4.9M    0%   /System/Volumes/Hardware
+/dev/disk3s5         460Gi   250Gi   169Gi    60%    3.5M  1.8G    0%   /System/Volumes/Data
+map auto_home          0Bi     0Bi     0Bi   100%       0     0     -   /System/Volumes/Data/home
+OrbStack:/OrbStack   193Gi    33Gi   160Gi    18%       0     0     -   /Users/aidin/OrbStack
+/dev/disk2s1         5.0Gi   2.2Gi   2.8Gi    44%      69   30M    0%   /System/Volumes/Update/SFR/mnt1
+/dev/disk3s1         460Gi    17Gi   169Gi    10%    459k  1.8G    0%   /System/Volumes/Update/mnt1
+$ greet.sh
+Hello, aidin!
+$ current_time.sh
+Current time: 16:09. Work day ends after 1 hours and 51 minutes.

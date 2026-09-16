@@ -1,0 +1,14 @@
+$ mkdir -p 'test files/nested'
+$ touch 'test files/empty file.txt' 'test files/nested/.empty'
+$ /bin/bash -c 'printf "keep this\n" > "test files/keep.txt"'
+$ find 'test files' -type f
+test files/empty file.txt
+test files/keep.txt
+test files/nested/.empty
+$ delete_empty_files.sh 'test files'
+/private/var/folders/l2/pqkn11d90sb0wt83t043wsl40000gn/T/info-sec-lab2-qt3gcstr/test files/empty file.txt
+/private/var/folders/l2/pqkn11d90sb0wt83t043wsl40000gn/T/info-sec-lab2-qt3gcstr/test files/nested/.empty
+$ find 'test files' -type f
+test files/keep.txt
+$ cat 'test files/keep.txt'
+keep this
