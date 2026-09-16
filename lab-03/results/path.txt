@@ -1,0 +1,10 @@
+$ pwd
+/Users/aidin/Documents/Codex/2026-09-28/database-github/work/lab3-path-demo
+$ /bin/bash -c command -v toy_shell
+/Users/aidin/Documents/Codex/2026-09-28/database-github/work/lab3-bin/toy_shell
+$ toy_shell
+Toy shell: list entries older than a date using ctime.
+Enter YYYY-MM-DD or 'exit'. On Unix, ctime is a metadata-change time.
+toy-shell> another-folder (Folder, ctime: 2026-09-28 16:12:05)
+other.txt (File, ctime: 2026-09-28 16:12:05)
+toy-shell> Exiting toy shell.

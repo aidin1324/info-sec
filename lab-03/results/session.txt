@@ -1,0 +1,13 @@
+Toy shell: list entries older than a date using ctime.
+Enter YYYY-MM-DD or 'exit'. On Unix, ctime is a metadata-change time.
+toy-shell> 2000-01-01
+No matching files or folders.
+toy-shell> 2099-01-01
+folder (Folder, ctime: 2026-09-28 16:11:44)
+notes.txt (File, ctime: 2026-09-28 16:11:44)
+toy-shell> 2026-02-30
+Invalid date. Please use a valid YYYY-MM-DD date.
+toy-shell> 2026-9-1
+Invalid date. Please use a valid YYYY-MM-DD date.
+toy-shell> exit
+Exiting toy shell.
