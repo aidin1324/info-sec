@@ -1,0 +1,5 @@
+#!/bin/bash
+printf 'Hostname: %s\n' "$(hostname)"
+printf 'Current User: %s\n' "$(whoami)"
+printf 'Disk Space:\n'
+df -h

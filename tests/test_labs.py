@@ -48,5 +48,77 @@ class Lab1Tests(unittest.TestCase):
                          {"title": "foo", "body": "bar", "userId": 1, "id": 101})
 
 
+class Lab2Tests(unittest.TestCase):
+    def run_script(self, name, *args, env=None):
+        path = ROOT / "lab-02/scripts" / name
+        self.assertTrue(path.is_file(), f"Missing command: {name}")
+        return subprocess.run(["/bin/bash", str(path), *map(str, args)],
+                              text=True, capture_output=True, env=env, timeout=5)
+
+    def test_word_count_counts_occurrences_not_lines_or_substrings(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "words with spaces.txt"
+            path.write_text("apple apple pineapple Apple\napple, apple!\n")
+            result = self.run_script("count_word.sh", path, "apple")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertRegex(result.stdout, r"appears\s+4\s+time")
+            result = self.run_script("count_word.sh", path, "pear")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertRegex(result.stdout, r"appears\s+0\s+time")
+
+    def test_word_count_rejects_missing_inputs(self):
+        self.assertNotEqual(self.run_script("count_word.sh").returncode, 0)
+        self.assertNotEqual(self.run_script("count_word.sh", "/missing-file", "word").returncode, 0)
+
+    def test_workday_boundaries_use_minutes_and_decimal_hours(self):
+        # Only the clock is substituted; the script and its arithmetic are real.
+        with tempfile.TemporaryDirectory() as directory:
+            date = Path(directory) / "date"
+            date.write_text('#!/bin/sh\n[ "$1" = "+%H:%M" ] || exit 2\nprintf "%s\\n" "$LAB_TEST_TIME"\n')
+            date.chmod(0o755)
+            cases = [("08:05", "9 hours and 55 minutes"),
+                     ("13:30", "4 hours and 30 minutes"),
+                     ("17:59", "0 hours and 1 minutes"),
+                     ("18:00", "ended"), ("19:10", "ended")]
+            for clock, expected in cases:
+                with self.subTest(clock=clock):
+                    env = dict(os.environ, PATH=directory + os.pathsep + os.environ["PATH"],
+                               LAB_TEST_TIME=clock)
+                    result = self.run_script("current_time.sh", env=env)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    self.assertIn(expected, result.stdout)
+
+    def test_cleanup_only_deletes_empty_regular_files_and_prints_names(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "test files"
+            nested = target / "nested"
+            nested.mkdir(parents=True)
+            empty = target / "empty file.txt"
+            hidden = nested / ".empty"
+            empty.touch()
+            hidden.touch()
+            full = target / "keep.txt"
+            full.write_text("keep this\n")
+            outside = root / "outside.txt"
+            outside.touch()
+            link = target / "link"
+            link.symlink_to(outside)
+            result = self.run_script("delete_empty_files.sh", target)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertFalse(empty.exists())
+            self.assertFalse(hidden.exists())
+            self.assertEqual(full.read_text(), "keep this\n")
+            self.assertTrue(nested.is_dir())
+            self.assertTrue(outside.exists())
+            self.assertTrue(link.is_symlink())
+            self.assertIn(str(empty), result.stdout)
+            self.assertIn(str(hidden), result.stdout)
+
+    def test_cleanup_rejects_missing_or_invalid_directory(self):
+        self.assertNotEqual(self.run_script("delete_empty_files.sh").returncode, 0)
+        self.assertNotEqual(self.run_script("delete_empty_files.sh", "/missing-dir").returncode, 0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
