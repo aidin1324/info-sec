@@ -120,5 +120,67 @@ class Lab2Tests(unittest.TestCase):
         self.assertNotEqual(self.run_script("delete_empty_files.sh", "/missing-dir").returncode, 0)
 
 
+class Lab3Tests(unittest.TestCase):
+    def command(self):
+        path = ROOT / "lab-03/toy_shell.py"
+        self.assertTrue(path.is_file(), "Toy shell implementation is missing")
+        return [sys.executable, "-u", str(path)]
+
+    def run_shell(self, text, cwd):
+        return subprocess.run(self.command(), input=text, cwd=cwd,
+                              text=True, capture_output=True, timeout=5)
+
+    def test_future_date_lists_file_and_folder_with_ctime_labels(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "notes.txt").write_text("notes\n")
+            (root / "folder").mkdir()
+            result = self.run_shell("2099-01-01\nexit\n", directory)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("notes.txt (File, ctime:", result.stdout)
+            self.assertIn("folder (Folder, ctime:", result.stdout)
+
+    def test_past_date_does_not_list_new_entries(self):
+        with tempfile.TemporaryDirectory() as directory:
+            (Path(directory) / "new.txt").touch()
+            result = self.run_shell("2000-01-01\nexit\n", directory)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertNotIn("new.txt", result.stdout)
+
+    def test_invalid_calendar_and_non_iso_dates_are_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for value in ["2026-02-30", "2026-9-1", "hello"]:
+                with self.subTest(value=value):
+                    result = self.run_shell(value + "\nexit\n", directory)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    self.assertIn("Invalid date", result.stdout)
+
+    def test_eof_and_exit_end_the_session(self):
+        with tempfile.TemporaryDirectory() as directory:
+            for value in ["", "EXIT\n"]:
+                result = self.run_shell(value, directory)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+
+    def test_ctrl_c_leaves_shell_available_for_exit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            process = subprocess.Popen(self.command(), cwd=directory,
+                                       stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE, text=True)
+            try:
+                self.assertIn("Toy shell", process.stdout.readline())
+                time.sleep(0.05)
+                process.send_signal(signal.SIGINT)
+                time.sleep(0.05)
+                output, error = process.communicate("exit\n", timeout=5)
+                self.assertEqual(process.returncode, 0, error)
+                self.assertIn("Use 'exit'", output)
+                self.assertNotIn("Traceback", error)
+            finally:
+                if process.poll() is None:
+                    process.kill()
+                    process.wait()
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
