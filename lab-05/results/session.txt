@@ -1,0 +1,69 @@
+Lab 5: users, groups and permissions (isolated Linux container)
+
+$ useradd -m -s /bin/bash user1
+
+$ printf "user1:<temporary classroom password>" | chpasswd
+
+$ getent passwd user1
+user1:x:1000:1000::/home/user1:/bin/bash
+
+$ ls -ld /home/user1
+drwxr-xr-x 1 user1 user1 54 Sep 29 07:51 /home/user1
+
+$ su - user1 -c whoami
+user1
+CHECK: switched identity = user1
+
+$ chfn -f Demo\ Student user1
+
+$ getent passwd user1
+user1:x:1000:1000:Demo Student,,,:/home/user1:/bin/bash
+CHECK: full name updated
+
+$ userdel -r user1
+userdel: user1 mail spool (/var/mail/user1) not found
+CHECK: user1 and home removed
+
+$ groupadd labreaders
+
+$ groupadd labteam
+
+$ useradd -m -s /bin/bash -G labreaders labstudent
+
+$ usermod -aG labteam labstudent
+
+$ getent group labteam
+labteam:x:1001:labstudent
+
+$ id labstudent
+uid=1000(labstudent) gid=1002(labstudent) groups=1002(labstudent),1000(labreaders),1001(labteam)
+
+$ groups labstudent
+labstudent : labstudent labreaders labteam
+CHECK: both supplementary groups retained
+
+$ su - labstudent -c id\;\ groups
+uid=1000(labstudent) gid=1002(labstudent) groups=1002(labstudent),1000(labreaders),1001(labteam)
+labstudent labreaders labteam
+
+$ install -d -m 750 -o root -g labteam /tmp/lab5-shared
+
+$ chown root:labteam /tmp/lab5-shared/note.txt
+
+$ chmod 640 /tmp/lab5-shared/note.txt
+
+$ ls -ld /tmp/lab5-shared /tmp/lab5-shared/note.txt
+drwxr-x--- 1 root labteam 16 Sep 29 07:51 /tmp/lab5-shared
+-rw-r----- 1 root labteam 28 Sep 29 07:51 /tmp/lab5-shared/note.txt
+
+$ su - labstudent -c cat\ /tmp/lab5-shared/note.txt
+A file readable by labteam.
+CHECK: labstudent read group file
+
+$ useradd -m -s /bin/bash laboutsider
+
+$ su - laboutsider -c "cat /tmp/lab5-shared/note.txt"
+cat: /tmp/lab5-shared/note.txt: Permission denied
+CHECK: outsider denied group file
+
+All Linux account checks passed. Container removal discards the lab accounts.

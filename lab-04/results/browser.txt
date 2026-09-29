@@ -1,0 +1,5 @@
+Computer Use verification in Chrome, 2026-09-29
+Opened http://127.0.0.1:8040/
+Clicked: Отправить учебные данные
+Observed: Сохранено: одна учебная запись добавлена в файл сервера.
+Closed the tab. The file still contained one fictional record.

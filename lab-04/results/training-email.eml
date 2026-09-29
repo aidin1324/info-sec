@@ -1,0 +1,14 @@
+From: Security Class <classroom@example.test>
+To: Demo Student <student@example.test>
+Subject: Lab 4 - local training demonstration
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<!doctype html>
+<html lang="en"><body>
+<h1>Information Security: training exercise</h1>
+<p>This is a fictional classroom example. It is not a bank message.</p>
+<p>Start the local server first, then open the demonstration on this computer:</p>
+<p><a href="http://127.0.0.1:8040/">Open the local training form</a></p>
+<p>The form accepts only fixed dummy values. Do not enter real card data.</p>
+</body></html>
