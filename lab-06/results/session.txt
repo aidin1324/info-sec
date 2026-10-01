@@ -1,0 +1,35 @@
+$ touch file.txt; ls -la file.txt
+-rw-r--r-- 1 root root 0 Oct  8 05:12 file.txt
+
+$ chmod 754 file.txt; chown alice:team file.txt
+-rwxr-xr-- 754 alice team file.txt
+754 = owner rwx (7), group r-x (5), others r-- (4)
+
+$ su - alice -c "echo owner-added >> file.txt"
+$ su - bob -c "cat file.txt"
+original line
+owner-added
+$ su - bob -c "echo group-added >> file.txt"
+Permission denied: group has r-x but no w.
+
+$ chmod 640 file.txt
+-rw-r----- 640 alice team file.txt
+$ su - guest -c "cat file.txt"
+Permission denied: others have no rights.
+
+$ chgrp visitors file.txt
+-rw-r----- 640 alice visitors file.txt
+$ su - guest -c "cat file.txt"
+original line
+owner-added
+$ su - bob -c "cat file.txt"
+Permission denied: Bob is no longer in the file group.
+
+$ chown bob:team file.txt
+-rw-r----- 640 bob team file.txt
+$ su - bob -c "echo new-owner-added >> file.txt"
+original line
+owner-added
+new-owner-added
+
+Owner and group changes changed real file access inside Docker.

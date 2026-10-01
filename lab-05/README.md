@@ -37,6 +37,6 @@ The image uses `python:3.13.7-bookworm` for its Debian account-management tools.
 - Existing processes keep their group credentials. A fresh `su - labstudent` session gets the updated membership.
 - The shared directory has mode `750`: its group may list/traverse it. The file has mode `640`: its group may read it. `labstudent` reads the file; `laboutsider` receives `Permission denied`.
 
-Full execution: [users and groups log](results/session.txt). `tests/test_lab05.py` repeats the operations in a new container and checks the assertions. No users or groups are created on macOS.
+Full execution: [users and groups log](results/session.txt). No users or groups are created on macOS.
 
 Command references: [usermod](https://man7.org/linux/man-pages/man8/usermod.8.html), [userdel](https://man7.org/linux/man-pages/man8/userdel.8.html), [chfn](https://man7.org/linux/man-pages/man1/chfn.1.html).
