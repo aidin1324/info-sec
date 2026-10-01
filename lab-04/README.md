@@ -32,11 +32,10 @@ cat lab-04/runtime/submissions.jsonl
 
 The fields are read-only for clarity. The server independently enforces the fixed values, since a user can modify HTML in the browser. No real card data is accepted or stored. The server binds only to `127.0.0.1`, with the Flask debugger disabled.
 
-## Evidence and checks
+## Evidence
 
 - [Live HTTP demonstration](results/http.txt), including a rejected non-demo request.
 - [Saved fictional data](results/submissions.jsonl).
 - [Browser check](results/browser.txt): the actual form was opened and submitted through Computer Use.
-- `tests/test_lab04.py`: app restart persistence, append behavior, every modified field, missing/extra fields, invalid JSON, oversized requests and unsupported HTTP methods.
 
-The implementation follows Flask's [routing documentation](https://flask.palletsprojects.com/en/stable/quickstart/) and [test client documentation](https://flask.palletsprojects.com/en/stable/testing/).
+The implementation follows Flask's [routing documentation](https://flask.palletsprojects.com/en/stable/quickstart/).

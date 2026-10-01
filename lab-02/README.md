@@ -37,7 +37,7 @@ find "$sample_dir" -type f
 | `count_word.sh` | `apple` occurs 4 times in the sample; `Apple` and `pineapple` do not count. `pear` gives 0. |
 | `delete_empty_files.sh` | Removed two empty files, including a nested hidden file; kept the file containing text. |
 
-The time checks use a controlled clock in the tests. The saved command log uses the actual system clock. The word counter uses literal, case-sensitive matches and grep word boundaries in the C locale. Cleanup searches nested folders and does not follow symbolic links.
+The saved command log uses the actual system clock. The word counter uses literal, case-sensitive matches and grep word boundaries in the C locale. Cleanup searches nested folders and does not follow symbolic links.
 
 Full logs: [commands](results/commands.txt), [words](results/words.txt), [cleanup](results/cleanup.txt).
 
