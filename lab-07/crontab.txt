@@ -1,0 +1,3 @@
+MAILTO=""
+@reboot /usr/local/bin/python3 /opt/info-sec-lab7/job.py
+* * * * * /usr/local/bin/python3 /opt/info-sec-lab7/job.py
