@@ -1,0 +1,14 @@
+$ crontab /opt/info-sec-lab7/crontab.txt
+$ crontab -l
+MAILTO=""
+@reboot /usr/local/bin/python3 /opt/info-sec-lab7/job.py
+* * * * * /usr/local/bin/python3 /opt/info-sec-lab7/job.py
+
+$ cron -f
+$ cat /tmp/lab7/reports.txt
+2026-10-08T05:13:57.075840+00:00 free_space_mib=142328
+
+$ crontab -r
+$ crontab -l
+no crontab for root
+The demonstration crontab was removed inside the container.
