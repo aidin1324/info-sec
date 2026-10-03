@@ -13,10 +13,11 @@ Laboratory work for the Information Security course at AUCA. Labs 1–4 were che
 | [5: Linux users and groups](lab-05/README.md) | Account lifecycle, supplementary groups and actual file-access checks in Docker. |
 | [6: Linux permissions](lab-06/README.md) | Numeric permissions, file ownership and group access. |
 | [7: cron](lab-07/README.md) | Schedule a Python job in an isolated Linux container. |
+| [8: Vim](lab-08/README.md) | Edit a file with Vim's modes and commands. |
 
 Each lab contains source files and saved output. Labs 1–3 also include screenshots of execution reports. The Python shell is adapted from the example in the assignment, linked in its README. Lab 4 is a visibly labelled local training adaptation; it does not send deceptive emails or host a public lookalike site.
 
-Each lab README explains how to run its demonstration. Labs 5–7 use disposable Docker containers so Linux account and permission changes do not affect macOS.
+Each lab README explains how to run its demonstration. Labs 5–8 use disposable Docker containers so Linux account and permission changes do not affect macOS.
 
 ## Employment certificate
 

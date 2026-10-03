@@ -1,0 +1,26 @@
+$ vim -Nu NONE -n -i NONE -es -S commands.vim file.txt
+
+i → insert three lines; Esc, :w → save:
+some text
+more text
+even more text
+
+gg j dd → delete the second line:
+some text
+even more text
+
+u → undo deletion:
+some text
+more text
+even more text
+
+:%s/text/line/g → replace text in every line:
+some line
+more line
+even more line
+
+:%d → delete all lines; wc -c:
+0
+
+i → insert final text; Esc, :wq → save and quit:
+Final line
