@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Лабораторная 4 — учебная демонстрация</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f3f5f8; color: #172538; font: 17px/1.5 system-ui, sans-serif; }
+    main { max-width: 680px; margin: 48px auto; padding: 30px; background: white; border-radius: 16px; }
+    .notice { padding: 12px 16px; background: #fff2cb; border: 1px solid #c89c24; border-radius: 8px; }
+    h1 { font-size: 30px; line-height: 1.2; }
+    label { display: block; margin: 16px 0; }
+    input { display: block; width: 100%; margin-top: 5px; padding: 10px; border: 1px solid #a8b3c3; border-radius: 6px; font: inherit; background: #f6f8fa; }
+    button { border: 0; border-radius: 7px; padding: 12px 20px; background: #204db2; color: white; font: inherit; cursor: pointer; }
+    button:disabled { opacity: .6; }
+    #status { min-height: 26px; font-weight: 600; }
+    details { margin-top: 24px; border-top: 1px solid #dce2eb; padding-top: 16px; }
+    code { font-size: .9em; }
+    @media (max-width: 720px) { main { margin: 16px; padding: 22px; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="notice"><strong>УЧЕБНАЯ ДЕМОНСТРАЦИЯ.</strong> Это вымышленная форма. Реальные карты и персональные данные не используются.</div>
+  <h1>Как данные формы попадают на сервер</h1>
+  <p>Поля заполнены фиктивными значениями. Нажмите кнопку, чтобы проследить их передачу и сохранение.</p>
+  <form id="demo-form" autocomplete="off">
+    <label>Вымышленный владелец <input name="holder" value="{{ demo.holder }}" readonly></label>
+    <label>Вымышленный номер карты <input name="card" value="{{ demo.card }}" readonly></label>
+    <label>Учебный срок действия <input name="expiry" value="{{ demo.expiry }}" readonly></label>
+    <label>Учебный CVV <input name="cvv" value="{{ demo.cvv }}" readonly></label>
+    <button type="submit">Отправить учебные данные</button>
+  </form>
+  <p id="status" role="status" aria-live="polite"></p>
+  <details open>
+    <summary>Главная механика</summary>
+    <p><code>HTML → fetch('/submit') → Flask → submissions.jsonl</code></p>
+    <p>Получателя определяет адрес запроса. Красивый логотип, замок HTTPS и убедительный текст сами по себе не доказывают, что сайт принадлежит организации.</p>
+    <p>После сохранения закрытие вкладки не удаляет файл сервера.</p>
+  </details>
+</main>
+<script>
+  const form = document.querySelector('#demo-form');
+  const status = document.querySelector('#status');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const button = form.querySelector('button');
+    button.disabled = true;
+    status.textContent = 'Отправка…';
+    try {
+      const response = await fetch('/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Ошибка сервера');
+      status.textContent = 'Сохранено: одна учебная запись добавлена в файл сервера.';
+    } catch (error) {
+      status.textContent = 'Не сохранено: ' + error.message;
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
