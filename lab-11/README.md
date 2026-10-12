@@ -17,4 +17,3 @@ docker run --rm --mount "type=bind,src=$PWD/lab-11,dst=/lab,readonly" info-sec-s
 Installed the two course examples from Git: `youtube-dl` through `setup.py`, and `neofetch` through `make install`. Independently built GNU Hello: download → SHA-256 check → extract → configure → make → install. The script fixes Git revisions and the archive checksum. It does not download videos.
 
 [Actual execution log](results/session.txt).
-

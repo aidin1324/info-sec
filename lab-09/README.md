@@ -16,4 +16,3 @@ docker run --rm --mount "type=bind,src=$PWD/lab-09,dst=/lab,readonly" info-sec-c
 Installed and inspected NGINX, displayed dependencies, upgraded packages, removed NGINX and purged its configuration. `apt update` updates the index. `upgrade` updates installed packages. `remove` keeps configuration, while `purge` removes it.
 
 [Actual execution log](results/session.txt).
-
