@@ -11,14 +11,14 @@ docker build -t info-sec-course -f lab-env/Dockerfile lab-env
 docker run --rm --mount "type=bind,src=$PWD/lab-09,dst=/lab,readonly" info-sec-course bash /lab/demo.sh
 ```
 
-## Result and mechanism
+## Results
 
 Installed and inspected NGINX, displayed dependencies, upgraded packages, removed NGINX and purged its configuration. `apt update` updates the index. `upgrade` updates installed packages. `remove` keeps configuration, while `purge` removes it.
 
-[Actual execution log](results/session.txt).
+[Execution log](results/session.txt).
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

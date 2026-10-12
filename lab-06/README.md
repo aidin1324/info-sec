@@ -1,6 +1,6 @@
 # Lab 6: Linux permissions
 
-Sources: [Lab 6](https://docs.google.com/document/d/1sgkWFDTC5tEzzbnh5R0RYNuQmiOth6OMrH6gMbx9bO8/edit) and the additional assignments in [Labs 4–6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit).
+Sources: [Lab 6](https://docs.google.com/document/d/1sgkWFDTC5tEzzbnh5R0RYNuQmiOth6OMrH6gMbx9bO8/edit) and the additional assignments in [Labs 4-6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit).
 
 ## Run
 
@@ -27,6 +27,6 @@ docker run --rm --network none --mount "type=bind,src=$PWD/lab-06/demo.sh,dst=/d
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

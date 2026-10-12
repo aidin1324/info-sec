@@ -1,0 +1,15 @@
++ install -m 755 /source/system_info /usr/local/bin/system_info
+/usr/local/bin/system_info
++ cd /tmp
++ command -v system_info
++ system_info
+Hostname: 2c1467f8ee7d
+Current User: root
+Disk Space:
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         180G   41G  140G  23% /
+tmpfs            64M     0   64M   0% /dev
+shm             5.9G     0  5.9G   0% /dev/shm
+mac             461G  314G  147G  69% /source
+/dev/vdb1       180G   41G  140G  23% /etc/hosts
+tmpfs           4.0K     0  4.0K   0% /proc/asound

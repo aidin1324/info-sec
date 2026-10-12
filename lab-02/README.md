@@ -37,14 +37,12 @@ find "$sample_dir" -type f
 | `count_word.sh` | `apple`: 4. `pear`: 0. Matches whole words with matching case. `apple pineapple apple`: 2 on macOS and Linux. |
 | `delete_empty_files.sh` | Prints and removes nested empty files. Preserves nonempty files and does not follow symlinks within that directory. |
 
-[Command log](results/commands.txt) · [word counts](results/words.txt) · [cleanup](results/cleanup.txt).
-
-[Complete execution on 12 October 2026](results/session.txt).
+[Run log, 12 October 2026](results/session.txt).
 
 Run the full demonstration with `bash lab-02/demo.sh`.
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

@@ -1,6 +1,6 @@
 # Lab 5: Linux users and groups
 
-Sources: [Lab 5](https://docs.google.com/document/d/1O6ATnyv85L9-AX1B96-pKn9cjAABx2Sm0AQtB2NtfKU/edit) and [Labs 4–6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit).
+Sources: [Lab 5](https://docs.google.com/document/d/1O6ATnyv85L9-AX1B96-pKn9cjAABx2Sm0AQtB2NtfKU/edit) and [Labs 4-6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit).
 
 ## Run
 
@@ -27,7 +27,7 @@ Accounts exist only inside this disposable Linux container. Setup runs as root. 
 
 [Recorded execution](results/session.txt).
 
-## Required explanation
+## Notes
 
 - `/etc/passwd`: `name:x:UID:GID:personal-info:home:shell`. UID identifies a user. GID identifies their primary group. `x` refers to password data in `/etc/shadow`. `/etc/group` records groups and explicit memberships.
 - `usermod -aG` appends supplementary groups. Without `-a`, `-G` replaces the list. Start a new login session to acquire updated memberships.
@@ -37,6 +37,6 @@ Accounts exist only inside this disposable Linux container. Setup runs as root. 
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

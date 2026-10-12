@@ -1,0 +1,14 @@
++ install -m 755 /source/toy_shell.py /usr/local/bin/toy_shell
++ mkdir -p /tmp/lab3/folder
++ touch /tmp/lab3/notes.txt
+/usr/local/bin/toy_shell
++ cd /tmp/lab3
++ command -v toy_shell
++ printf '2000-01-01\n2099-01-01\nexit\n'
++ toy_shell
+Toy shell: list entries older than a date using ctime.
+Enter YYYY-MM-DD or 'exit'. On Unix, ctime is a metadata-change time.
+toy-shell> No matching files or folders.
+toy-shell> folder (Folder, ctime: 2026-10-08 05:35:56)
+notes.txt (File, ctime: 2026-10-08 05:35:56)
+toy-shell> Exiting toy shell.

@@ -23,10 +23,10 @@ bash lab-01/commands.sh /tmp/info-sec-lab1-results
 
 [File log](results/files.txt) · [HTTP log](results/http.txt) · [archive log](results/archive.txt) · [GET JSON](results/posts.json) · [POST JSON](results/post.json).
 
-[Complete execution on 12 October 2026](results/session.txt).
+[Run log, 12 October 2026](results/session.txt).
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

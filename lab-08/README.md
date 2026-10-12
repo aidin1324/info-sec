@@ -1,6 +1,6 @@
 # Lab 8: Vim editor
 
-The [assignment](https://docs.google.com/document/d/1AGwXVhwxq1Lk8HskhSQlyl9ysUTg6sBT/edit) asks to install Vim, create a file, insert lines, delete a line, clear the file, save and quit, then explore more commands. The demonstration runs actual Vim commands in a disposable Linux container. Snapshots show every stage.
+The [assignment](https://docs.google.com/document/d/1AGwXVhwxq1Lk8HskhSQlyl9ysUTg6sBT/edit) asks to install Vim, create a file, insert lines, delete a line, clear the file, save and quit, then explore more commands. The script runs Vim in Docker and saves the file after each step.
 
 From the repository root:
 
@@ -9,7 +9,7 @@ docker build -t info-sec-course -f lab-env/Dockerfile lab-env
 docker run --rm --network none --mount "type=bind,src=$PWD/lab-08,dst=/opt/info-sec-lab8,readonly" info-sec-course bash /opt/info-sec-lab8/demo.sh
 ```
 
-Read the [recorded session](results/session.txt). The script uses Vim in batch mode for repeatable output. To practice interactively instead, run `docker run --rm -it info-sec-course vim /tmp/file.txt` and type these commands yourself:
+Read the [recorded session](results/session.txt). The script runs Vim in batch mode. For interactive practice, run `docker run --rm -it info-sec-course vim /tmp/file.txt` and type these commands yourself:
 
 | Keys | What happens |
 |---|---|
@@ -21,12 +21,12 @@ Read the [recorded session](results/session.txt). The script uses Vim in batch m
 | `:%d` | Delete all lines. |
 | `:w`, `:q`, `:wq` | Save, quit, or do both. |
 
-**Main mechanism:** Vim is *modal*: the same key means different things in Insert and Normal mode. After inserting text, press `Esc` before `dd` or any `:` command. Press Enter after each `:` command. The assignment calls deletion “DD”, but the actual Vim command is lowercase `dd`.
+Vim uses modes: the same key means different things in Insert and Normal mode. After inserting text, press `Esc` before `dd` or any `:` command. Press Enter after each `:` command. The assignment calls deletion `DD`, but the actual Vim command is lowercase `dd`.
 
 Additional commands were checked against the Vim manual: [undo](https://vimhelp.org/usr_02.txt.html#02.5) and [substitution](https://vimhelp.org/usr_12.txt.html#12.1).
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

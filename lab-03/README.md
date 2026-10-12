@@ -10,7 +10,7 @@ From the repository root:
 python3 lab-03/toy_shell.py
 ```
 
-Enter `YYYY-MM-DD` or `exit`. The program lists files and folders in the current directory whose `ctime` is earlier than local midnight on that date. On Unix, `ctime` records metadata changes, not file creation. The example's label was corrected.
+Enter `YYYY-MM-DD` or `exit`. The program lists files and folders in the current directory whose `ctime` is earlier than local midnight on that date. On Unix, `ctime` records metadata changes, not file creation.
 
 To run as `toy_shell` from another directory:
 
@@ -35,14 +35,12 @@ The assignment's installation in `/usr/local/bin/toy_shell` was also [checked in
 | `exit`, Ctrl+D | Clean exit. |
 | Ctrl+C | Continues and prints how to exit. |
 
-[Session log](results/session.txt) · [PATH log](results/path.txt).
-
-[Complete execution on 12 October 2026](results/session.txt).
+[Run log, 12 October 2026](results/session.txt).
 
 Run the full demonstration with `bash lab-03/demo.sh`.
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

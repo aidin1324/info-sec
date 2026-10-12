@@ -12,20 +12,20 @@ docker build -t info-sec-runtime lab-runtime
 docker run --rm --network none --mount "type=bind,src=$PWD/lab-13,dst=/lab,readonly" info-sec-runtime bash /lab/demo.sh
 ```
 
-## Result and mechanism
+## Results
 
-The real `pynput` listener records key presses/releases on a separate X11 display inside Docker. Space and Enter save a word locally and send it to a loopback API. Escape stops the listener. The timeout is 10 seconds. The API accepts only `testing`, `my`, `lab`. The demonstration types those words into an X11 terminal, compares both files and stops all processes.
+`pynput` records key presses/releases on a separate X11 display inside Docker. Space and Enter save a word locally and send it to a loopback API. Escape stops the listener. The timeout is 10 seconds. The API accepts only `testing`, `my`, `lab`. The demonstration types those words into an X11 terminal, compares both files and stops all processes.
 
 It does not monitor the host keyboard, run secretly or send data to an external server.
 
-[Actual execution log](results/session.txt).
+[Execution log](results/session.txt).
 
-The source task also discusses stealth delivery. That part is not implemented. This is an explicit, isolated classroom demonstration of capture and API delivery.
+The source task also discusses stealth delivery. That part is not implemented. The script records keys and sends words within Docker.
 
 [Escape-stop verification](results/escape.txt). Add `--escape` after `/lab/demo.sh` to repeat that check.
 
 ## Screenshot
 
-Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+Chrome screenshot of the execution log on GitHub.
 
-![Actual execution log in Chrome](screenshots/execution-log.jpg)
+![Execution log](screenshots/execution-log.jpg)

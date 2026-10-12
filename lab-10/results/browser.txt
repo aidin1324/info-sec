@@ -1,0 +1,6 @@
+Chrome, 2026-10-12
+Opened http://127.0.0.1:18010/
+Observed: My site on 8000
+Unedited screenshot: ../screenshots/site.jpg
+Direct /api/health display was blocked by Chrome (ERR_BLOCKED_BY_CLIENT).
+The actual proxy response was verified with curl, HTTP 200; see session.txt.

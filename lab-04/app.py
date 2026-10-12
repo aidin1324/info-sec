@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local, visibly labelled phishing-awareness simulator using fixed dummy data."""
+"""Local form with fixed sample data."""
 
 import json
 from pathlib import Path

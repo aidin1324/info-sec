@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Course FastAPI example. Fictional accounts, isolated Docker loopback only."""
+"""FastAPI login example with two sample accounts."""
 from typing import Annotated
 from fastapi import FastAPI, Form
 

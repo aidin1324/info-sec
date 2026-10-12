@@ -1,0 +1,6 @@
+Chrome, 2026-10-12
+Opened http://127.0.0.1:8040/
+Submitted the fixed fictional values.
+Observed the successful-saving message.
+Unedited screenshot: ../screenshots/desktop.jpg
+Closed the browser and stopped the server. Saved rows remain intact.

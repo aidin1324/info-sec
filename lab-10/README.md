@@ -12,16 +12,15 @@ docker build -t info-sec-runtime lab-runtime
 docker run --rm --network none --mount "type=bind,src=$PWD/lab-10,dst=/lab,readonly" info-sec-runtime bash /lab/demo.sh
 ```
 
-## Result and mechanism
+## Results
 
 Created a site in `sites-available`, enabled its symlink, checked `nginx -t` and reloaded NGINX. `/` serves HTML. `/api/health` reaches the Python API through `proxy_pass`. The trailing slash strips `/api/` from the upstream path. A missing file returns 404.
 
 Container reload uses `nginx -s reload` because there is no systemd.
 
-[Actual execution log](results/session.txt).
+[Execution log](results/session.txt).
 
-
-## Browser demonstration
+## Open in browser
 
 ```bash
 docker run --rm --name info-sec-lab10-preview -p 127.0.0.1:18010:8000 --mount "type=bind,src=$PWD/lab-10,dst=/lab,readonly" info-sec-runtime bash /lab/demo.sh --serve

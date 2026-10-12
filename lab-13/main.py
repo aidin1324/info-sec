@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Visible ten-second pynput lab, restricted to its isolated Linux X11 display."""
+"""Records keyboard events on the Docker X11 display."""
 import json
 import os
 from pathlib import Path

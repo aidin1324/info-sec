@@ -1,0 +1,14 @@
+$ pwd
+/var/folders/l2/pqkn11d90sb0wt83t043wsl40000gn/T/tmp.vU2J3ARw5v/sample
+$ command -v toy_shell
+/var/folders/l2/pqkn11d90sb0wt83t043wsl40000gn/T/tmp.vU2J3ARw5v/bin/toy_shell
+$ printf "2000-01-01\n2099-01-01\n2026-02-30\n2026-9-1\nexit\n" | toy_shell
+Toy shell: list entries older than a date using ctime.
+Enter YYYY-MM-DD or 'exit'. On Unix, ctime is a metadata-change time.
+toy-shell> No matching files or folders.
+toy-shell> folder (Folder, ctime: 2026-10-12 20:46:52)
+notes.txt (File, ctime: 2026-10-12 20:46:52)
+toy-shell> Invalid date. Please use a valid YYYY-MM-DD date.
+toy-shell> Invalid date. Please use a valid YYYY-MM-DD date.
+toy-shell> Exiting toy shell.
+CHECK: file/folder filtering, invalid dates and exit demonstrated.

@@ -1,0 +1,115 @@
+Working directory: /var/folders/l2/pqkn11d90sb0wt83t043wsl40000gn/T//info-sec-lab1.qGkkVK
+$ mkdir my_dir
+$ cd my_dir
+$ touch my_file.txt
+$ chmod 777 my_file.txt
+$ ls -l my_file.txt
+-rwxrwxrwx@ 1 aidin  staff  0 Oct 12 20:46 my_file.txt
+$ cat my_file.txt
+$ cd ..
+$ mkdir another_dir
+$ cp my_dir/my_file.txt another_dir/
+$ rm my_dir/my_file.txt
+$ ls another_dir
+my_file.txt
+$ mkdir source destination
+$ bash -c printf\ \"first\ file\\n\"\ \>\ source/notes.txt\;\ printf\ \"second\ file\\n\"\ \>\ source/second.txt\;\ printf\ \"hidden\ file\\n\"\ \>\ source/.hidden.txt
+$ ls -A source
+.hidden.txt
+notes.txt
+second.txt
+$ mv source/.hidden.txt source/notes.txt source/second.txt destination/
+$ ls -A source
+$ ls -A destination
+.hidden.txt
+notes.txt
+second.txt
+$ curl --help
+Usage: curl [options...] <url>
+ -d, --data <data>           HTTP POST data
+ -f, --fail                  Fail fast with no output on HTTP errors
+ -h, --help <category>       Get help for commands
+ -i, --include               Include response headers in output
+ -o, --output <file>         Write to file instead of stdout
+ -O, --remote-name           Write output to file named as remote file
+ -s, --silent                Silent mode
+ -T, --upload-file <file>    Transfer local FILE to destination
+ -u, --user <user:password>  Server user and password
+ -A, --user-agent <name>     Send User-Agent <name> to server
+ -v, --verbose               Make the operation more talkative
+ -V, --version               Show version number and quit
+
+This is not the full help, this menu is stripped into categories.
+Use "--help category" to get an overview of all categories.
+For all options use the manual or "--help all".
+$ curl --fail --silent --show-error https://jsonplaceholder.typicode.com/posts -o /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/posts.json
+$ python3: show number of posts and first object
+Posts received: 100
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+$ curl --fail --silent --show-error -I https://jsonplaceholder.typicode.com/posts -o /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/head.txt
+$ head -n 8 /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/head.txt
+HTTP/2 200 
+date: Mon, 12 Oct 2026 14:46:50 GMT
+content-type: application/json; charset=utf-8
+access-control-allow-credentials: true
+cache-control: max-age=43200
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+etag: W/"6b80-Ybsq/K6GwwqrYkAsFxqDXGC7DoM"
+expires: -1
+$ curl --fail --silent --show-error -X POST -H Content-Type:\ application/json -d \{\"title\":\"foo\"\,\"body\":\"bar\"\,\"userId\":1\} https://jsonplaceholder.typicode.com/posts -o /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/post.json
+$ cat /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/post.json
+{
+  "title": "foo",
+  "body": "bar",
+  "userId": 1,
+  "id": 101
+}$ tar --help
+tar(bsdtar): manipulate archive files
+First option must be a mode specifier:
+  -c Create  -r Add/Replace  -t List  -u Update  -x Extract
+Common Options:
+  -b #  Use # 512-byte records per I/O block
+  -f <filename>  Location of archive
+  -v    Verbose
+  -w    Interactive
+Create: tar -c [options] [<file> | <dir> | @<archive> | -C <dir> ]
+  <file>, <dir>  add these items to archive
+  -z, -j, -J, --lzma  Compress archive with gzip/bzip2/xz/lzma
+  --format {ustar|pax|cpio|shar}  Select archive format
+  --exclude <pattern>  Skip files that match pattern
+  -C <dir>  Change to <dir> before processing remaining files
+  @<archive>  Add entries from <archive> to output
+List: tar -t [options] [<patterns>]
+  <patterns>  If specified, list only entries that match
+Extract: tar -x [options] [<patterns>]
+  <patterns>  If specified, extract only entries that match
+  -k    Keep (don't overwrite) existing files
+  -m    Don't restore modification times
+  -O    Write entries to stdout, don't restore to disk
+  -p    Restore permissions (including ACLs, owner, file flags)
+bsdtar 3.5.3 - libarchive 3.7.4 zlib/1.2.12 liblzma/5.4.3 bz2lib/1.0.8 
+$ tar -czvf /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/archive.tar.gz destination
+a destination
+a destination/notes.txt
+a destination/.hidden.txt
+a destination/second.txt
+$ tar -tzf /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/archive.tar.gz
+destination/
+destination/notes.txt
+destination/.hidden.txt
+destination/second.txt
+$ mkdir /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/extracted
+$ tar -xzvf /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/archive.tar.gz -C /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/extracted
+x destination/
+x destination/notes.txt
+x destination/.hidden.txt
+x destination/second.txt
+$ diff -r destination /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current/extracted/destination
+Extracted files match the originals.
+
+Results: /Users/aidin/Documents/info-sec-labs-2026-10-12/lab-01/results-current

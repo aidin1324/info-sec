@@ -1,6 +1,6 @@
 # Lab 4: local phishing-awareness simulation
 
-Implements the local payment-form assignment in [Labs 4–6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit). The [separate Lab 4 document](https://docs.google.com/document/d/1cGUkFKaxVDsjgh9YeU5-b-tgZ3gNHti0/edit) also requests email delivery and public hosting. Those parts are not implemented. The supplement makes email optional and specifies local testing.
+Implements the local payment-form assignment in [Labs 4-6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit). The [separate Lab 4 document](https://docs.google.com/document/d/1cGUkFKaxVDsjgh9YeU5-b-tgZ3gNHti0/edit) also requests email delivery and public hosting. Those parts are not implemented. The supplement makes email optional and specifies local testing.
 
 ## Run
 
