@@ -1,6 +1,6 @@
 # Lab 5: Linux users and groups
 
-I reproduced the [assignment](https://docs.google.com/document/d/1O6ATnyv85L9-AX1B96-pKn9cjAABx2Sm0AQtB2NtfKU/edit) in a disposable Debian Linux container. The final task is implemented: a new user is added to a newly created group. Actual file access demonstrates the effect of membership.
+Sources: [Lab 5](https://docs.google.com/document/d/1O6ATnyv85L9-AX1B96-pKn9cjAABx2Sm0AQtB2NtfKU/edit) and [Labs 4–6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit).
 
 ## Run
 
@@ -11,32 +11,26 @@ docker build -t info-sec-lab5 lab-05
 docker run --rm --network none info-sec-lab5
 ```
 
-The image uses `python:3.13.7-bookworm` for its Debian account-management tools. No host account files are mounted. `--rm` removes the container after execution; the lab accounts disappear with it. The script refuses to run outside a root Linux Docker container or if any lab account/group already exists.
+Accounts exist only inside this disposable Linux container. Setup runs as root. access checks run as ordinary users.
 
-## Commands and observed behavior
+## Results
 
-| Command | Effect |
+| Commands | Observed result |
 |---|---|
-| `useradd -m -s /bin/bash user1` | Creates the account and `/home/user1`. |
-| `chpasswd` | Sets a temporary classroom password inside the container. |
-| `getent passwd user1` | Shows the user database entry. |
-| `su - user1 -c whoami` | Starts a login environment as `user1`; prints `user1`. |
-| `chfn -f 'Demo Student' user1` | Updates the full-name part of the GECOS field. |
-| `userdel -r user1` | Removes the account and its home directory. |
-| `groupadd labteam` | Creates a new group. |
-| `usermod -aG labteam labstudent` | Adds the new user to `labteam`, retaining `labreaders`. |
-| `id labstudent` / `groups labstudent` | Confirms UID, primary group and supplementary groups. |
+| `useradd -m`, `chpasswd` | Account, home directory and temporary password created. |
+| `getent passwd`, `su - user1 -c whoami` | Account entry exists. switched identity prints `user1`. |
+| `chfn` | Full name updated in the account entry. |
+| `pkill -KILL -u user1` | Temporary login session terminated. |
+| `userdel -r` | Account and home directory removed. |
+| `groupadd`, `usermod -aG`, `id`, `groups` | New membership added while the earlier group is retained. |
+| `chown`, `chgrp`, `chmod` | Shared directory `750`, file `640`: `labstudent` reads. `laboutsider` is denied. |
 
-`useradd`/`userdel` are the lower-level equivalents of the assignment's interactive `adduser`/`deluser`. Commands run as root inside the container, so `sudo` is unnecessary and `su` does not prompt root for a password. This checks identity switching, not password authentication. Each `su - ... -c ...` exits before deletion, so no process-killing command is needed.
+[Recorded execution](results/session.txt).
 
-## Main mechanics / главное для защиты
+## Required explanation
 
-- **UID** identifies a user; **GID** identifies a group. A user has one primary group and can have supplementary groups.
-- `/etc/passwd` stores account metadata. Its `x` password field refers to password information stored separately in `/etc/shadow`; hashes are not printed. `/etc/group` stores group metadata and explicit memberships.
-- **`-aG` = append to supplementary groups.** Without `-a`, `usermod -G` replaces the existing list. The demonstration checks that both `labreaders` and `labteam` remain.
-- Existing processes keep their group credentials. A fresh `su - labstudent` session gets the updated membership.
-- The shared directory has mode `750`: its group may list/traverse it. The file has mode `640`: its group may read it. `labstudent` reads the file; `laboutsider` receives `Permission denied`.
+- `/etc/passwd`: `name:x:UID:GID:personal-info:home:shell`. UID identifies a user. GID identifies their primary group. `x` refers to password data in `/etc/shadow`. `/etc/group` records groups and explicit memberships.
+- `usermod -aG` appends supplementary groups. Without `-a`, `-G` replaces the list. Start a new login session to acquire updated memberships.
+- Group access enables collaboration. denying others isolates the file. Parent-directory traversal is also required.
 
-Full execution: [users and groups log](results/session.txt). No users or groups are created on macOS.
-
-Command references: [usermod](https://man7.org/linux/man-pages/man8/usermod.8.html), [userdel](https://man7.org/linux/man-pages/man8/userdel.8.html), [chfn](https://man7.org/linux/man-pages/man1/chfn.1.html).
+`useradd`/`userdel` are equivalents of the assignment's interactive `adduser`/`deluser`. `getent passwd user1` shows just the relevant account. Root's `su` checks identity switching, not password authentication.

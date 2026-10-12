@@ -1,16 +1,26 @@
 # Lab 6: Linux permissions
 
-The [assignment](https://docs.google.com/document/d/1sgkWFDTC5tEzzbnh5R0RYNuQmiOth6OMrH6gMbx9bO8/edit) asks for `ls -la`, numeric `chmod 754`, and discovery of how `chown` and `chgrp` affect access. This lab runs the commands in a disposable Linux container.
+Sources: [Lab 6](https://docs.google.com/document/d/1sgkWFDTC5tEzzbnh5R0RYNuQmiOth6OMrH6gMbx9bO8/edit) and the additional assignments in [Labs 4–6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit).
 
-From the repository root:
+## Run
+
+From the repository root, with Docker running:
 
 ```bash
 docker build -t info-sec-course -f lab-env/Dockerfile lab-env
 docker run --rm --network none --mount "type=bind,src=$PWD/lab-06/demo.sh,dst=/demo.sh,readonly" info-sec-course bash /demo.sh
 ```
 
-Read the [recorded session](results/session.txt). It creates `file.txt`, shows `ls -la`, sets mode `754` and changes its owner and group. It then runs reads and writes as three real Linux users. The container disappears after the command; no account on your Mac is changed.
+## Results
 
-**Main mechanism:** `r=4`, `w=2`, `x=1`; each digit in `754` is a sum for owner, group and everyone else. `chown alice:team` sets the owner and group. With `640`, only Alice can write and the group can read. `chgrp visitors` moves that read access to a different group. `chown bob:team` makes Bob the writer. Root can bypass normal permission checks, so the examples use `su` to observe each user's actual access.
+| Exercise | Observed result |
+|---|---|
+| `touch`, `ls -la`, `chmod 754` | Owner `rwx`, group `r-x`, others `r--`. Bob cannot write. |
+| `chmod 640`, `chgrp`, `chown` | Changing the group transfers read access. making Bob the owner grants him write access. |
+| Several files and directories | Private directory `700` / file `600`. shared directory `750` / file `640`. |
+| Directory traversal | Bob cannot read a group-readable file while its directory lacks group `x`. restoring `x` restores access. |
+| Unsafe permissions | With `666`, an outsider modifies a file. With `640`, the same write is denied. |
 
-Directory `x` means traversal; file `x` means execution. They are different operations.
+[Recorded execution](results/session.txt). Commands run as three ordinary users inside a disposable container. root is only used for setup.
+
+`r=4`, `w=2`, `x=1`. Directory `x` allows traversal. file `x` allows execution. Deleting a file normally depends on its parent directory's permissions, not the file's write bit. Audit both files and their parent directories. grant only the access each user needs.

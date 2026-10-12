@@ -1,12 +1,10 @@
-# Lab 4: phishing-awareness demonstration
+# Lab 4: local phishing-awareness simulation
 
-A local classroom adaptation of the [assignment](https://docs.google.com/document/d/1cGUkFKaxVDsjgh9YeU5-b-tgZ3gNHti0/edit). It demonstrates an HTML form, an HTTP POST, Flask processing and persistence in a file. The page is visibly labelled as training and accepts only fixed fictional values. A [sample email](results/training-email.eml) illustrates a link to the page; it is a local preview and was not sent.
-
-The original assignment also describes deceptive distribution and a public lookalike domain. Those parts are not implemented here. This submission demonstrates the technical mechanism as a controlled exercise; acceptance of that adaptation is up to the instructor.
+Implements the local payment-form assignment in [Labs 4–6](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit). The [separate Lab 4 document](https://docs.google.com/document/d/1cGUkFKaxVDsjgh9YeU5-b-tgZ3gNHti0/edit) also requests email delivery and public hosting. those parts are not implemented. The supplement makes email optional and specifies local testing.
 
 ## Run
 
-From the repository root, with Python 3 installed:
+From the repository root:
 
 ```bash
 python3 -m venv .venv
@@ -14,28 +12,23 @@ python3 -m venv .venv
 .venv/bin/python lab-04/app.py
 ```
 
-Open <http://127.0.0.1:8040/> and press the training button. Stop the server with Ctrl+C.
-
-The server writes one JSON object per line to `lab-04/runtime/submissions.jsonl`. That runtime directory is ignored by Git. Read the file with:
+Open <http://127.0.0.1:8040/>, submit the fixed fictional data, then inspect:
 
 ```bash
 cat lab-04/runtime/submissions.jsonl
 ```
 
-## Main mechanics / главное для защиты
+Stop the server with Ctrl+C. No real card data is accepted.
 
-1. HTML defines the fields. JavaScript converts their values to JSON and sends `POST /submit` with `fetch`.
-2. Flask matches the URL to `submit()`, validates the entire object and appends it to a file. HTTP `201` confirms successful saving; `400` rejects other values.
-3. The file belongs to the server. Closing the browser or restarting this server does not delete previously saved rows.
+## Mechanism and defenses
 
-**Фишинг:** человека убеждают отправить данные постороннему получателю. Копирование внешнего вида не меняет владельца сервера. Проверять нужно адрес назначения, а не только оформление страницы.
-
-The fields are read-only for clarity. The server independently enforces the fixed values, since a user can modify HTML in the browser. No real card data is accepted or stored. The server binds only to `127.0.0.1`, with the Flask debugger disabled.
+- HTML → JavaScript `fetch` → `POST /submit` → Flask validation → one JSON line appended to the server's file.
+- `201` means saved. `400` rejects altered values. Validation is server-side because browser fields can be changed. Closing the tab or restarting the server leaves saved rows intact.
+- Detect phishing by checking the destination domain and unexpected requests for sensitive data. HTTPS alone does not establish who owns a site.
+- Defenses: email gateways and URL/content filtering. SPF, DKIM and DMARC against sender-domain spoofing. phishing-resistant MFA for account access. awareness training and a clear reporting channel. MFA does not prevent a person from disclosing card details.
 
 ## Evidence
 
-- [Live HTTP demonstration](results/http.txt), including a rejected non-demo request.
-- [Saved fictional data](results/submissions.jsonl).
-- [Browser check](results/browser.txt): the actual form was opened and submitted in Chrome.
+[HTTP results](results/http.txt) · [browser check](results/browser.txt) · [fictional saved rows](results/submissions.jsonl) · [email preview, not sent](results/training-email.eml).
 
-The implementation follows Flask's [routing documentation](https://flask.palletsprojects.com/en/stable/quickstart/).
+![Local form after a successful submission](screenshots/desktop.jpg)

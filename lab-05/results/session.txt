@@ -8,7 +8,7 @@ $ getent passwd user1
 user1:x:1000:1000::/home/user1:/bin/bash
 
 $ ls -ld /home/user1
-drwxr-xr-x 1 user1 user1 54 Sep 29 07:51 /home/user1
+drwxr-xr-x 1 user1 user1 54 Oct 12 11:30 /home/user1
 
 $ su - user1 -c whoami
 user1
@@ -19,6 +19,15 @@ $ chfn -f Demo\ Student user1
 $ getent passwd user1
 user1:x:1000:1000:Demo Student,,,:/home/user1:/bin/bash
 CHECK: full name updated
+
+$ su - user1 -c "sleep 300" &
+
+$ pgrep -a -u user1
+50 sleep 300
+
+$ pkill -KILL -u user1
+Killed
+CHECK: user1 session ended before account deletion
 
 $ userdel -r user1
 userdel: user1 mail spool (/var/mail/user1) not found
@@ -48,13 +57,15 @@ labstudent labreaders labteam
 
 $ install -d -m 750 -o root -g labteam /tmp/lab5-shared
 
-$ chown root:labteam /tmp/lab5-shared/note.txt
+$ chown root /tmp/lab5-shared/note.txt
+
+$ chgrp labteam /tmp/lab5-shared/note.txt
 
 $ chmod 640 /tmp/lab5-shared/note.txt
 
 $ ls -ld /tmp/lab5-shared /tmp/lab5-shared/note.txt
-drwxr-x--- 1 root labteam 16 Sep 29 07:51 /tmp/lab5-shared
--rw-r----- 1 root labteam 28 Sep 29 07:51 /tmp/lab5-shared/note.txt
+drwxr-x--- 1 root labteam 16 Oct 12 11:30 /tmp/lab5-shared
+-rw-r----- 1 root labteam 28 Oct 12 11:30 /tmp/lab5-shared/note.txt
 
 $ su - labstudent -c cat\ /tmp/lab5-shared/note.txt
 A file readable by labteam.

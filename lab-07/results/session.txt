@@ -1,12 +1,19 @@
 $ crontab /opt/info-sec-lab7/crontab.txt
 $ crontab -l
 MAILTO=""
-@reboot /usr/local/bin/python3 /opt/info-sec-lab7/job.py
+PATH=/usr/local/bin:/usr/bin:/bin
+* * * * * /opt/info-sec-lab7/write_line.sh
 * * * * * /usr/local/bin/python3 /opt/info-sec-lab7/job.py
 
 $ cron -f
+Waiting for two scheduled runs of BOTH jobs (up to 130 seconds).
+$ cat /tmp/lab7/file.txt
+New line at 2026-10-12T11:31:01Z
+New line at 2026-10-12T11:32:01Z
 $ cat /tmp/lab7/reports.txt
-2026-10-08T05:13:57.075840+00:00 free_space_mib=142328
+2026-10-12T11:31:02.027463+00:00 free_space_mib=131188
+2026-10-12T11:32:01.092849+00:00 free_space_mib=131187
+CHECK: both jobs ran on two minute ticks.
 
 $ crontab -r
 $ crontab -l

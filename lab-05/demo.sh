@@ -36,7 +36,22 @@ run getent passwd user1
 [[ $(getent passwd user1 | cut -d: -f5 | cut -d, -f1) == 'Demo Student' ]]
 printf 'CHECK: full name updated\n'
 
-# The su command has exited, so there is no live user1 session to kill.
+# Keep a disposable session alive to demonstrate the assignment's pkill step.
+printf '\n$ su - user1 -c "sleep 300" &\n'
+su - user1 -c 'sleep 300' &
+login_pid=$!
+for attempt in {1..30}; do
+    if pgrep -u user1 >/dev/null; then break; fi
+    sleep 0.1
+done
+run pgrep -a -u user1
+run pkill -KILL -u user1
+wait "$login_pid" || true
+if pgrep -u user1 >/dev/null; then
+    echo 'A user1 process is still running' >&2
+    exit 1
+fi
+printf 'CHECK: user1 session ended before account deletion\n'
 run userdel -r user1
 if getent passwd user1 >/dev/null; then
     echo 'user1 was not removed' >&2
@@ -60,7 +75,8 @@ run su - labstudent -c 'id; groups'
 # Group membership has a concrete consequence: access to a shared file.
 run install -d -m 750 -o root -g labteam /tmp/lab5-shared
 printf 'A file readable by labteam.\n' > /tmp/lab5-shared/note.txt
-run chown root:labteam /tmp/lab5-shared/note.txt
+run chown root /tmp/lab5-shared/note.txt
+run chgrp labteam /tmp/lab5-shared/note.txt
 run chmod 640 /tmp/lab5-shared/note.txt
 run ls -ld /tmp/lab5-shared /tmp/lab5-shared/note.txt
 run su - labstudent -c 'cat /tmp/lab5-shared/note.txt'

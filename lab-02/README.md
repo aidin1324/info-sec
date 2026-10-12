@@ -1,6 +1,6 @@
-# Lab 2: custom commands
+# Lab 2: custom UNIX commands
 
-I wrote `system_info` and four Bash scripts. The time script counts down to 18:00, and the word counter counts whole words with matching case. The cleanup script prints the names of the empty files it deletes. I checked the scripts with sample files and invalid arguments.
+[Assignment](https://docs.google.com/document/d/10NiPchRJCOz84ndxy1rQ3dR7A5FAjIS1-Evz1qzJURA/edit).
 
 ## Run
 
@@ -14,9 +14,9 @@ current_time.sh
 count_word.sh "lab-02/samples/words with spaces.txt" apple
 ```
 
-This PATH change applies to the current session. The files already have executable permissions. `system_info` can also be called after changing to another directory.
+`PATH` applies to the current terminal. the commands also work from another directory. Scripts are executable. The assignment's `/usr/local/bin/system_info` installation was also [checked inside Linux Docker](results/linux-path.txt).
 
-For the cleanup exercise, use disposable files:
+For cleanup, create disposable files:
 
 ```bash
 sample_dir=$(mktemp -d)
@@ -29,26 +29,16 @@ find "$sample_dir" -type f
 
 ## Results
 
-| Script | Check |
+| Command | Result |
 |---|---|
-| `system_info` | Reports hostname, username and `df -h`; ran from another directory. |
-| `greet.sh` | Printed `Hello, aidin!`, matching `whoami`. |
-| `current_time.sh` | 13:30 gives 4 hours and 30 minutes; 18:00 and later report that the day ended. |
-| `count_word.sh` | `apple` occurs 4 times in the sample; `Apple` and `pineapple` do not count. `pear` gives 0. |
-| `delete_empty_files.sh` | Removed two empty files, including a nested hidden file; kept the file containing text. |
+| `system_info` | Hostname, username and disk usage. available through `PATH`. |
+| `greet.sh` | Greeting uses the current username from `whoami`. |
+| `current_time.sh` | Counts down to 18:00. at 18:00 or later reports that work ended. |
+| `count_word.sh` | `apple`: 4. `pear`: 0. Matches whole words with matching case. |
+| `delete_empty_files.sh` | Prints and removes nested empty files. preserves nonempty files and does not follow symlinks within that directory. |
 
-The saved command log uses the actual system clock. The word counter uses literal, case-sensitive matches and grep word boundaries in the C locale. Cleanup searches nested folders and does not follow symbolic links.
+[Command log](results/commands.txt) · [word counts](results/words.txt) · [cleanup](results/cleanup.txt).
 
-Full logs: [commands](results/commands.txt), [words](results/words.txt), [cleanup](results/cleanup.txt).
+[Complete execution on 12 October 2026](results/session.txt).
 
-## Screenshots
-
-These reports display the recorded output of the scripts.
-
-![System information, greeting and current time](screenshots/commands.png)
-
-![Word counts and missing arguments](screenshots/words.png)
-
-![Empty files before and after cleanup](screenshots/cleanup.png)
-
-[Assignment](https://docs.google.com/document/d/10NiPchRJCOz84ndxy1rQ3dR7A5FAjIS1-Evz1qzJURA/edit).
+Run the full demonstration with `bash lab-02/demo.sh`.

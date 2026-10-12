@@ -1,0 +1,33 @@
+$ DISPLAY=:99 python3 main.py
+$ xdotool type --delay 80 "testing my lab"; xdotool key Return
+ACTIVE: educational X11 listener, isolated display, maximum 10 seconds.
+Key Pressed: 't'
+Key Pressed: 'e'
+Key Pressed: 's'
+Key Pressed: 't'
+Key Pressed: 'i'
+Key Pressed: 'n'
+Key Pressed: 'g'
+Key Pressed: Key.space
+SAVED locally and at loopback API: testing
+Key Pressed: 'm'
+Key Pressed: 'y'
+Key Pressed: Key.space
+SAVED locally and at loopback API: my
+Key Pressed: 'l'
+Key Pressed: 'a'
+Key Pressed: 'b'
+Key Pressed: Key.enter
+SAVED locally and at loopback API: lab
+STOPPED: listener ended.
+
+$ cat /tmp/lab13/log.txt
+testing
+my
+lab
+$ cat /tmp/lab13/server-log.txt
+testing
+my
+lab
+$ cmp /tmp/lab13/log.txt /tmp/lab13/server-log.txt
+CHECK: actual X11 key events recorded, delivered to local API, listener stopped.

@@ -4,7 +4,11 @@ if [[ $(uname -s) != Linux || ! -f /.dockerenv ]]; then
     echo 'Run this lab inside Docker.' >&2
     exit 1
 fi
+printf '$ vim --version | sed -n 1,2p\n'
+vim --version | sed -n '1,2p'
 mkdir -p /tmp/lab8
+printf '$ touch /tmp/lab8/file.txt\n'
+touch /tmp/lab8/file.txt
 printf '$ vim -Nu NONE -n -i NONE -es -S commands.vim file.txt\n'
 vim -Nu NONE -n -i NONE -es -S /opt/info-sec-lab8/commands.vim /tmp/lab8/file.txt
 

@@ -1,0 +1,31 @@
+
+$ install -m 644 /lab/my_site /etc/nginx/sites-available/my_site
+
+$ install -m 644 /lab/my_site.html /var/www/html/my_site.html
+
+$ ln -s /etc/nginx/sites-available/my_site /etc/nginx/sites-enabled/my_site
+
+$ nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+127.0.0.1 - - [12/Oct/2026 11:33:27] "GET /health HTTP/1.1" 200 -
+
+$ nginx
+
+$ nginx -s reload
+2026/10/12 11:33:27 [notice] 26#26: signal process started
+
+$ curl -fsS http://127.0.0.1:8000/
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Lab 10 — NGINX</title>
+<h1>My site on 8000</h1><p>Lab 10: a static page served by NGINX.</p>
+<p><a href="/api/health">Open the API through proxy_pass</a></p></html>
+
+$ curl -fsS http://127.0.0.1:8000/api/health
+127.0.0.1 - - [12/Oct/2026 11:33:27] "GET /health HTTP/1.0" 200 -
+{"ok": true, "service": "lab10-api"}
+$ curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8000/missing
+404
+CHECK: static page 200; proxied API 200; missing file 404.
+Browser demo remains active until this container stops.
+127.0.0.1 - - [12/Oct/2026 11:35:08] "GET /health HTTP/1.0" 200 -

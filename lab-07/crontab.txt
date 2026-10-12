@@ -1,3 +1,4 @@
 MAILTO=""
-@reboot /usr/local/bin/python3 /opt/info-sec-lab7/job.py
+PATH=/usr/local/bin:/usr/bin:/bin
+* * * * * /opt/info-sec-lab7/write_line.sh
 * * * * * /usr/local/bin/python3 /opt/info-sec-lab7/job.py

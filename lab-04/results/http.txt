@@ -1,6 +1,7 @@
-Live HTTP check, 2026-09-29
-After stopping and restarting the server: one browser-submitted record remains.
-GET / -> 200; training form returned.
-POST /submit (fixed dummy fields) -> 201 {"demo_only": true, "saved": true}
-POST /submit (changed card field) -> 400 {"error": "Only the fixed fictional training values are accepted."}
-Two records saved (browser + HTTP). Rejected request did not alter the file.
+Live verification, 2026-10-12
+GET / -> 200
+POST /submit (fixed fictional fields) -> 201 {"demo_only":true,"saved":true}
+POST /submit (changed card) -> 400 {"error":"Only the fixed fictional training values are accepted."}
+POST /submit (missing fields) -> 400 {"error":"Only the fixed fictional training values are accepted."}
+POST /submit (wrong JSON type) -> 400 {"error":"Only the fixed fictional training values are accepted."}
+CHECK: accepted request added one row; rejected requests did not change the file.

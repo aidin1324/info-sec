@@ -1,7 +1,8 @@
 $ touch file.txt; ls -la file.txt
--rw-r--r-- 1 root root 0 Oct  8 05:12 file.txt
+-rw-r--r-- 1 root root 0 Oct 12 11:30 file.txt
 
 $ chmod 754 file.txt; chown alice:team file.txt
+-rwxr-xr-- 1 alice team 14 Oct 12 11:30 file.txt
 -rwxr-xr-- 754 alice team file.txt
 754 = owner rwx (7), group r-x (5), others r-- (4)
 
@@ -10,11 +11,13 @@ $ su - bob -c "cat file.txt"
 original line
 owner-added
 $ su - bob -c "echo group-added >> file.txt"
+-sh: 1: cannot create /tmp/lab6/file.txt: Permission denied
 Permission denied: group has r-x but no w.
 
 $ chmod 640 file.txt
 -rw-r----- 640 alice team file.txt
 $ su - guest -c "cat file.txt"
+cat: /tmp/lab6/file.txt: Permission denied
 Permission denied: others have no rights.
 
 $ chgrp visitors file.txt
@@ -23,6 +26,7 @@ $ su - guest -c "cat file.txt"
 original line
 owner-added
 $ su - bob -c "cat file.txt"
+cat: /tmp/lab6/file.txt: Permission denied
 Permission denied: Bob is no longer in the file group.
 
 $ chown bob:team file.txt
@@ -31,5 +35,37 @@ $ su - bob -c "echo new-owner-added >> file.txt"
 original line
 owner-added
 new-owner-added
+
+$ install -d -m 700 -o alice -g alice private
+$ install -d -m 750 -o alice -g team shared
+$ ls -ld private shared private/secret.txt shared/note.txt
+drwx------ 1 alice alice 20 Oct 12 11:30 private
+-rw------- 1 alice alice 24 Oct 12 11:30 private/secret.txt
+drwxr-x--- 1 alice team  16 Oct 12 11:30 shared
+-rw-r----- 1 alice team  23 Oct 12 11:30 shared/note.txt
+
+$ su - bob -c "cat /tmp/lab6/private/secret.txt"
+cat: /tmp/lab6/private/secret.txt: Permission denied
+$ su - bob -c "cat /tmp/lab6/shared/note.txt"
+Shared classroom note.
+
+$ chmod 740 shared
+$ su - bob -c "cat /tmp/lab6/shared/note.txt"
+cat: /tmp/lab6/shared/note.txt: Permission denied
+The file is group-readable, but its directory also needs x.
+$ chmod 750 shared
+Shared classroom note.
+
+Unsafe permissions on disposable data:
+$ chmod 666 exposed.txt
+$ su - guest -c "echo outsider-changed >> /tmp/lab6/exposed.txt"
+Original note.
+outsider-changed
+$ chmod 640 exposed.txt
+$ su - guest -c "echo another-change >> /tmp/lab6/exposed.txt"
+-sh: 1: cannot create /tmp/lab6/exposed.txt: Permission denied
+$ ls -la exposed.txt
+-rw-r----- 1 alice team 32 Oct 12 11:30 exposed.txt
+Least privilege: owner writes, team reads, outsiders have no access.
 
 Owner and group changes changed real file access inside Docker.
