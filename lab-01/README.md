@@ -29,4 +29,6 @@ bash lab-01/commands.sh /tmp/info-sec-lab1-results
 
 Chrome screenshot of the execution log on GitHub.
 
-![Execution log](screenshots/execution-log.jpg)
+![HTTP responses](screenshots/http.jpg)
+
+![Archive check](screenshots/archive.jpg)
