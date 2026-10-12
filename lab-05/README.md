@@ -34,3 +34,9 @@ Accounts exist only inside this disposable Linux container. Setup runs as root. 
 - Group access enables collaboration. Denying others isolates the file. Parent-directory traversal is also required.
 
 `useradd`/`userdel` are equivalents of the assignment's interactive `adduser`/`deluser`. `getent passwd user1` shows just the relevant account. Root's `su` checks identity switching, not password authentication.
+
+## Screenshot
+
+Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+
+![Actual execution log in Chrome](screenshots/execution-log.jpg)

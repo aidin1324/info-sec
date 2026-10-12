@@ -20,3 +20,9 @@ FastAPI receives form fields. Hydra tries the supplied course dictionaries again
 
 
 [Course dictionaries](https://drive.google.com/drive/u/1/folders/1DBu_JCTj-9gmpj76f0XKq-uZ0MDcSS7j). `main.py` is adapted from the provided FastAPI example.
+
+## Screenshot
+
+Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+
+![Actual execution log in Chrome](screenshots/execution-log.jpg)

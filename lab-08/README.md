@@ -24,3 +24,9 @@ Read the [recorded session](results/session.txt). The script uses Vim in batch m
 **Main mechanism:** Vim is *modal*: the same key means different things in Insert and Normal mode. After inserting text, press `Esc` before `dd` or any `:` command. Press Enter after each `:` command. The assignment calls deletion “DD”, but the actual Vim command is lowercase `dd`.
 
 Additional commands were checked against the Vim manual: [undo](https://vimhelp.org/usr_02.txt.html#02.5) and [substitution](https://vimhelp.org/usr_12.txt.html#12.1).
+
+## Screenshot
+
+Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+
+![Actual execution log in Chrome](screenshots/execution-log.jpg)

@@ -23,3 +23,9 @@ It does not monitor the host keyboard, run secretly or send data to an external 
 The source task also discusses stealth delivery. That part is not implemented. This is an explicit, isolated classroom demonstration of capture and API delivery.
 
 [Escape-stop verification](results/escape.txt). Add `--escape` after `/lab/demo.sh` to repeat that check.
+
+## Screenshot
+
+Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+
+![Actual execution log in Chrome](screenshots/execution-log.jpg)

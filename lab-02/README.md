@@ -42,3 +42,9 @@ find "$sample_dir" -type f
 [Complete execution on 12 October 2026](results/session.txt).
 
 Run the full demonstration with `bash lab-02/demo.sh`.
+
+## Screenshot
+
+Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+
+![Actual execution log in Chrome](screenshots/execution-log.jpg)

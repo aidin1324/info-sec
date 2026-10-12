@@ -20,7 +20,7 @@ Laboratory work for the Information Security course at AUCA. Labs 1–4 use Bash
 | [12: dictionary attacks](lab-12/README.md) | Run Hydra against two fictional accounts on isolated loopback. |
 | [13: keyboard events](lab-13/README.md) | Record isolated X11 key events and deliver fixed words to a local API. |
 
-Each lab contains source files, run instructions and actual execution logs from 12 October 2026. Labs 4 and 10 include unedited screenshots from Chrome on the laptop.  The other labs have complete execution logs.
+Each lab contains source files, run instructions and actual execution logs from 12 October 2026. All 13 labs include unedited screenshots captured in Chrome on the laptop. Labs 4 and 10 show the local pages. The other screenshots show the actual execution logs on GitHub. 
 
 The Python shell is adapted from the linked course example. Labs 4–6 also cover the [supplementary assignments](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit). Lab 4 follows their local-simulation scope.
 
@@ -28,6 +28,6 @@ Each lab README explains how to run its demonstration. Labs 5–13 use disposabl
 
 ## Screenshots
 
-Screenshots are unedited. Original files are also saved on the laptop Desktop.
+Screenshots are unedited. Each lab README includes its image. Original files are saved in `~/Desktop/InfoSec-screenshots-2026-10-12/`.
 
 [Lab 4: saved form](lab-04/screenshots/desktop.jpg) · [Lab 10: NGINX page](lab-10/screenshots/site.jpg).

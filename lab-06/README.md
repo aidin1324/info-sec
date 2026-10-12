@@ -24,3 +24,9 @@ docker run --rm --network none --mount "type=bind,src=$PWD/lab-06/demo.sh,dst=/d
 [Recorded execution](results/session.txt). Commands run as three ordinary users inside a disposable container. `root` is only used for setup.
 
 `r=4`, `w=2`, `x=1`. Directory `x` allows traversal. File `x` allows execution. Deleting a file normally depends on its parent directory's permissions, not the file's write bit. Audit both files and their parent directories. Grant only the access each user needs.
+
+## Screenshot
+
+Unedited capture from Chrome on the laptop. The page displays the actual execution log on GitHub.
+
+![Actual execution log in Chrome](screenshots/execution-log.jpg)
