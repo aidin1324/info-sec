@@ -27,6 +27,4 @@ docker run --rm --network none --mount "type=bind,src=$PWD/lab-06/demo.sh,dst=/d
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

@@ -23,6 +23,4 @@ Allow up to 130 seconds. The container runs both jobs on two consecutive minute 
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

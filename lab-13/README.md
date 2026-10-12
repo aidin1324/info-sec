@@ -26,6 +26,4 @@ The source task also discusses stealth delivery. That part is not implemented. T
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

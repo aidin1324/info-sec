@@ -29,6 +29,6 @@ Stop the server with Ctrl+C. No real card data is accepted.
 
 ## Evidence
 
-[HTTP results](results/http.txt) · [browser check](results/browser.txt) · [fictional saved rows](results/submissions.jsonl) · [email preview, not sent](results/training-email.eml).
+[HTTP results](results/session.txt) · [Saved sample data](results/submissions.jsonl).
 
 ![Local form after a successful submission](screenshots/desktop.jpg)

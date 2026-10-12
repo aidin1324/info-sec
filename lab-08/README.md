@@ -27,6 +27,4 @@ Additional commands were checked against the Vim manual: [undo](https://vimhelp.
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

@@ -20,6 +20,4 @@ Installed the two course examples from Git: `youtube-dl` through `setup.py`, and
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

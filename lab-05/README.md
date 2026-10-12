@@ -37,6 +37,4 @@ Accounts exist only inside this disposable Linux container. Setup runs as root. 
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

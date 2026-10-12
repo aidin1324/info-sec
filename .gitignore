@@ -3,3 +3,7 @@ __pycache__/
 .DS_Store
 .venv/
 lab-04/runtime/
+lab-01/results/*
+!lab-01/results/session.txt
+!lab-01/results/posts.json
+!lab-01/results/post.json

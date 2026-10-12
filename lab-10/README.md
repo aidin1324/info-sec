@@ -29,5 +29,3 @@ docker run --rm --name info-sec-lab10-preview -p 127.0.0.1:18010:8000 --mount "t
 Open <http://127.0.0.1:18010/>. Port 18010 on macOS maps to port 8000 in Docker. Stop the preview with `docker stop info-sec-lab10-preview`.
 
 ![Actual NGINX page, unedited screenshot](screenshots/site.jpg)
-
-Chrome displayed the static page. Chrome blocked direct display of `/api/health` with `ERR_BLOCKED_BY_CLIENT`. `curl` returned HTTP 200. The execution log contains the response.

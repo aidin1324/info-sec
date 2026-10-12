@@ -9,7 +9,7 @@ Laboratory work for the Information Security course at AUCA. Labs 1-4 use Bash a
 | [1: UNIX commands](lab-01/README.md) | File operations, HTTP requests with curl, tar archives. |
 | [2: custom commands](lab-02/README.md) | System information and four Bash scripts. |
 | [3: toy shell](lab-03/README.md) | Date input, file filtering and a command available through PATH. |
-| [4: phishing awareness](lab-04/README.md) | Local HTML → Flask → file demonstration with fixed fictional data and a sample email preview. |
+| [4: phishing awareness](lab-04/README.md) | Local HTML form, Flask and file storage with sample data. |
 | [5: Linux users and groups](lab-05/README.md) | Account lifecycle, supplementary groups and actual file-access checks in Docker. |
 | [6: Linux permissions](lab-06/README.md) | Numeric permissions, file ownership and group access. |
 | [7: cron](lab-07/README.md) | Schedule a Python job in an isolated Linux container. |
@@ -20,14 +20,18 @@ Laboratory work for the Information Security course at AUCA. Labs 1-4 use Bash a
 | [12: dictionary attacks](lab-12/README.md) | Run Hydra against two fictional accounts on isolated loopback. |
 | [13: keyboard events](lab-13/README.md) | Record isolated X11 key events and deliver fixed words to a local API. |
 
-Each lab has code, run instructions, results and a screenshot. Runs are from 12 October 2026.
-
-Labs 4 and 10 show local web pages. Other screenshots show execution logs in Chrome. Images are unedited.
+Each lab has code, run instructions, an execution log and one screenshot.
 
 Lab 3 uses the course example. Labs 4-6 also follow the [additional tasks](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit). Lab 4 uses the local simulation described there.
 
+## Employment certificate
+
+[Certificate issued on 16 September 2026 (PDF)](docs/employment-certificate.pdf).
+
+The certificate confirms employment at MDigital as an AI Engineer since 1 June 2026.
+
 ## Screenshots
 
-Each lab README includes a screenshot. Originals are in `~/Desktop/InfoSec-screenshots-2026-10-12/`.
+Each lab README includes its screenshot. Labs 4 and 10 show local web pages; the others show terminal output from the repeat run on 31 October 2026. Images are unedited.
 
 [Lab 4: saved form](lab-04/screenshots/desktop.jpg) · [Lab 10: NGINX page](lab-10/screenshots/site.jpg).

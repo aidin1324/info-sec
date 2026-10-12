@@ -21,14 +21,10 @@ bash lab-01/commands.sh /tmp/info-sec-lab1-results
 
 `cp` keeps the original. `mv` moves it. `777` grants everyone read/write/execute and is used only on an empty disposable file. JSONPlaceholder [simulates POST without storing it](https://jsonplaceholder.typicode.com/guide/).
 
-[File log](results/files.txt) · [HTTP log](results/http.txt) · [archive log](results/archive.txt) · [GET JSON](results/posts.json) · [POST JSON](results/post.json).
+[GET JSON](results/posts.json) · [POST JSON](results/post.json).
 
 [Run log, 12 October 2026](results/session.txt).
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![HTTP responses](screenshots/http.jpg)
-
-![Archive check](screenshots/archive.jpg)
+![Terminal result](screenshots/terminal.png)

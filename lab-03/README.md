@@ -41,6 +41,4 @@ Run the full demonstration with `bash lab-03/demo.sh`.
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)

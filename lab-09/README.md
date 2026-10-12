@@ -19,6 +19,4 @@ Installed and inspected NGINX, displayed dependencies, upgraded packages, remove
 
 ## Screenshot
 
-Chrome screenshot of the execution log on GitHub.
-
-![Execution log](screenshots/execution-log.jpg)
+![Terminal result](screenshots/terminal.png)
