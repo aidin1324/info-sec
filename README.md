@@ -26,6 +26,12 @@ Labs 4 and 10 show local web pages. Other screenshots show execution logs in Chr
 
 Lab 3 uses the course example. Labs 4-6 also follow the [additional tasks](https://docs.google.com/document/d/1iLU-oof3YflO--nj00r0LgKvT8UiGYt2/edit). Lab 4 uses the local simulation described there.
 
+## Employment certificate
+
+[Certificate issued on 16 September 2026 (PDF)](docs/employment-certificate.pdf).
+
+The certificate confirms employment at MDigital as an AI Engineer since 1 June 2026.
+
 ## Screenshots
 
 Each lab README includes a screenshot. Originals are in `~/Desktop/InfoSec-screenshots-2026-10-12/`.
