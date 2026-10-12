@@ -14,7 +14,7 @@ current_time.sh
 count_word.sh "lab-02/samples/words with spaces.txt" apple
 ```
 
-`PATH` applies to the current terminal. the commands also work from another directory. Scripts are executable. The assignment's `/usr/local/bin/system_info` installation was also [checked inside Linux Docker](results/linux-path.txt).
+`PATH` applies to the current terminal. The commands also work from another directory. Scripts are executable. The assignment's `/usr/local/bin/system_info` installation was also [checked inside Linux Docker](results/linux-path.txt).
 
 For cleanup, create disposable files:
 
@@ -31,11 +31,11 @@ find "$sample_dir" -type f
 
 | Command | Result |
 |---|---|
-| `system_info` | Hostname, username and disk usage. available through `PATH`. |
+| `system_info` | Hostname, username and disk usage. Available through `PATH`. |
 | `greet.sh` | Greeting uses the current username from `whoami`. |
-| `current_time.sh` | Counts down to 18:00. at 18:00 or later reports that work ended. |
-| `count_word.sh` | `apple`: 4. `pear`: 0. Matches whole words with matching case. |
-| `delete_empty_files.sh` | Prints and removes nested empty files. preserves nonempty files and does not follow symlinks within that directory. |
+| `current_time.sh` | Counts down to 18:00. At 18:00 or later reports that work ended. |
+| `count_word.sh` | `apple`: 4. `pear`: 0. Matches whole words with matching case. `apple pineapple apple`: 2 on macOS and Linux. |
+| `delete_empty_files.sh` | Prints and removes nested empty files. Preserves nonempty files and does not follow symlinks within that directory. |
 
 [Command log](results/commands.txt) · [word counts](results/words.txt) · [cleanup](results/cleanup.txt).
 

@@ -16,11 +16,11 @@ docker run --rm --network none --mount "type=bind,src=$PWD/lab-06/demo.sh,dst=/d
 | Exercise | Observed result |
 |---|---|
 | `touch`, `ls -la`, `chmod 754` | Owner `rwx`, group `r-x`, others `r--`. Bob cannot write. |
-| `chmod 640`, `chgrp`, `chown` | Changing the group transfers read access. making Bob the owner grants him write access. |
-| Several files and directories | Private directory `700` / file `600`. shared directory `750` / file `640`. |
-| Directory traversal | Bob cannot read a group-readable file while its directory lacks group `x`. restoring `x` restores access. |
+| `chmod 640`, `chgrp`, `chown` | Changing the group transfers read access. Making Bob the owner grants him write access. |
+| Several files and directories | Private directory `700` / file `600`. Shared directory `750` / file `640`. |
+| Directory traversal | Bob cannot read a group-readable file while its directory lacks group `x`. Restoring `x` restores access. |
 | Unsafe permissions | With `666`, an outsider modifies a file. With `640`, the same write is denied. |
 
-[Recorded execution](results/session.txt). Commands run as three ordinary users inside a disposable container. root is only used for setup.
+[Recorded execution](results/session.txt). Commands run as three ordinary users inside a disposable container. `root` is only used for setup.
 
-`r=4`, `w=2`, `x=1`. Directory `x` allows traversal. file `x` allows execution. Deleting a file normally depends on its parent directory's permissions, not the file's write bit. Audit both files and their parent directories. grant only the access each user needs.
+`r=4`, `w=2`, `x=1`. Directory `x` allows traversal. File `x` allows execution. Deleting a file normally depends on its parent directory's permissions, not the file's write bit. Audit both files and their parent directories. Grant only the access each user needs.

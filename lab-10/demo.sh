@@ -18,6 +18,8 @@ run nginx
 run nginx -s reload
 run curl -fsS http://127.0.0.1:8000/
 run curl -fsS http://127.0.0.1:8000/api/health
+curl -fsS http://127.0.0.1:8000/ | grep -q 'My site on 8000'
+curl -fsS http://127.0.0.1:8000/api/health | python3 -c 'import json, sys; assert json.load(sys.stdin) == {"ok": True, "service": "lab10-api"}'
 printf '\n$ curl -s -o /dev/null -w "%%{http_code}" http://127.0.0.1:8000/missing\n'
 status=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/missing)
 printf '%s\n' "$status"

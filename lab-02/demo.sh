@@ -13,6 +13,9 @@ run greet.sh
 run current_time.sh
 run count_word.sh "$lab_dir/samples/words with spaces.txt" apple
 run count_word.sh "$lab_dir/samples/words with spaces.txt" pear
+printf 'apple pineapple apple\n' > boundary-words.txt
+run count_word.sh boundary-words.txt apple
+[[ $(count_word.sh boundary-words.txt apple) == *'appears 2 time(s)'* ]]
 mkdir -p sample/nested
 touch sample/empty.txt sample/nested/.empty
 printf 'keep this\n' > sample/keep.txt

@@ -11,14 +11,14 @@ docker build -t info-sec-lab5 lab-05
 docker run --rm --network none info-sec-lab5
 ```
 
-Accounts exist only inside this disposable Linux container. Setup runs as root. access checks run as ordinary users.
+Accounts exist only inside this disposable Linux container. Setup runs as root. Access checks run as ordinary users.
 
 ## Results
 
 | Commands | Observed result |
 |---|---|
 | `useradd -m`, `chpasswd` | Account, home directory and temporary password created. |
-| `getent passwd`, `su - user1 -c whoami` | Account entry exists. switched identity prints `user1`. |
+| `getent passwd`, `su - user1 -c whoami` | Account entry exists. Switched identity prints `user1`. |
 | `chfn` | Full name updated in the account entry. |
 | `pkill -KILL -u user1` | Temporary login session terminated. |
 | `userdel -r` | Account and home directory removed. |
@@ -31,6 +31,6 @@ Accounts exist only inside this disposable Linux container. Setup runs as root. 
 
 - `/etc/passwd`: `name:x:UID:GID:personal-info:home:shell`. UID identifies a user. GID identifies their primary group. `x` refers to password data in `/etc/shadow`. `/etc/group` records groups and explicit memberships.
 - `usermod -aG` appends supplementary groups. Without `-a`, `-G` replaces the list. Start a new login session to acquire updated memberships.
-- Group access enables collaboration. denying others isolates the file. Parent-directory traversal is also required.
+- Group access enables collaboration. Denying others isolates the file. Parent-directory traversal is also required.
 
 `useradd`/`userdel` are equivalents of the assignment's interactive `adduser`/`deluser`. `getent passwd user1` shows just the relevant account. Root's `su` checks identity switching, not password authentication.

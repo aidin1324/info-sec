@@ -10,13 +10,21 @@ if [ ! -f "$file" ] || [ ! -r "$file" ]; then
     exit 1
 fi
 
-matches=$(LC_ALL=C grep -F -w -o -- "$word" "$file")
-status=$?
-if [ "$status" -gt 1 ]; then
-    exit "$status"
-fi
-count=0
-if [ -n "$matches" ]; then
-    count=$(printf '%s\n' "$matches" | wc -l | tr -d '[:space:]')
-fi
+# BSD grep -w -o can stop at a rejected substring and miss later words.
+count=$(COUNT_WORD="$word" LC_ALL=C awk '
+    BEGIN { word = ENVIRON["COUNT_WORD"]; size = length(word) }
+    {
+        offset = 0
+        remaining = $0
+        while ((position = index(remaining, word)) > 0) {
+            position += offset
+            before = position > 1 ? substr($0, position - 1, 1) : ""
+            after = substr($0, position + size, 1)
+            if (before !~ /[[:alnum:]_]/ && after !~ /[[:alnum:]_]/) total++
+            offset = position + size - 1
+            remaining = substr($0, offset + 1)
+        }
+    }
+    END { print total + 0 }
+' "$file") || exit "$?"
 printf "The word '%s' appears %s time(s) in '%s'.\n" "$word" "$count" "$file"

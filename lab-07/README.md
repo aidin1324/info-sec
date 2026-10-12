@@ -17,6 +17,6 @@ Allow up to 130 seconds. The container runs both jobs on two consecutive minute 
 
 - `write_line.sh` reproduces the Bash example: appends a UTC timestamp to `/tmp/lab7/file.txt`.
 - `job.py` completes the Python task: appends a UTC timestamp and free disk space in MiB to `/tmp/lab7/reports.txt`. Email is only an example in the assignment, not a requirement.
-- [Recorded execution](results/session.txt) shows two scheduled runs of each job. Neither script is run manually by the demonstration. there is no `@reboot` shortcut.
+- [Recorded execution](results/session.txt) shows two scheduled runs of each job. Neither script is run manually by the demonstration. There is no `@reboot` shortcut.
 
 `* * * * *` means every minute: minute, hour, day of month, month, weekday. `crontab -e` edits the schedule. `crontab FILE` installs a prepared schedule. `-l` lists it. `-r` removes it. The `cron` daemon executes the commands. Absolute paths and an explicit `PATH` avoid dependence on an interactive shell's environment.

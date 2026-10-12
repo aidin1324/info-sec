@@ -1,6 +1,6 @@
 # Lab 8: Vim editor
 
-The [assignment](https://docs.google.com/document/d/1AGwXVhwxq1Lk8HskhSQlyl9ysUTg6sBT/edit) asks to install Vim, create a file, insert lines, delete a line, clear the file, save and quit, then explore more commands. The demonstration runs actual Vim commands in a disposable Linux container. snapshots show every stage.
+The [assignment](https://docs.google.com/document/d/1AGwXVhwxq1Lk8HskhSQlyl9ysUTg6sBT/edit) asks to install Vim, create a file, insert lines, delete a line, clear the file, save and quit, then explore more commands. The demonstration runs actual Vim commands in a disposable Linux container. Snapshots show every stage.
 
 From the repository root:
 
@@ -13,7 +13,7 @@ Read the [recorded session](results/session.txt). The script uses Vim in batch m
 
 | Keys | What happens |
 |---|---|
-| `i` | Enter Insert mode. type text. |
+| `i` | Enter Insert mode. Type text. |
 | `Esc` | Return to Normal mode. |
 | `gg`, `j`, `dd` | Go to top, down one line, delete that line. |
 | `u` | Undo the last edit. |
